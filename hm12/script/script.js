@@ -1,5 +1,7 @@
+
 const createTooltip = (button, text) => { //button-до чого привязуємо тултип з text
 
+  
   const tooltip = document.createElement('div')//створюємо елемент
   tooltip.classList.add('tooltip')// додаємо клас tooltip
   tooltip.innerText = text // якийс контент у тому тултипі
@@ -9,9 +11,11 @@ const createTooltip = (button, text) => { //button-до чого привязу�
   // щоб отримати ширину та висоту елемента, щоб вирахувати координати
   document.body.append(tooltip);
  
-  // отримуємо координати елемена до якого кріпимо тултип
-  const anchorElemCoords = button.getBoundingClientRect()
+  let tooltipCoord = document.querySelector('.button')
 
+  // отримуємо координати елемента до якого кріпимо тултип
+  const anchorElemCoords = tooltipCoord.getBoundingClientRect();
+  // console.log(anchorElemCoords);
  
   // вираховуємо верхні (вертикальні) координати тултипу
   // по такій формулі. 
@@ -31,4 +35,4 @@ const createTooltip = (button, text) => { //button-до чого привязу�
   tooltip.style.top = `${tooltipTop}px`
   tooltip.style.left = `${tooltipLeft}px` 
 }
-createTooltip('button', 'example text bla bla bla');
+createTooltip('.button', 'example text bla bla bla');
