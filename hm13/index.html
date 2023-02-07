@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hm13_Js</title>
+</head>
+
+<!-- 
+ <div>
+    <button class="button">випадковий колір</button>
+  </div>
+  <script>
+    const btn = document.querySelector('button');
+
+function random(number) {
+  return Math.floor(Math.random() * (number+1));
+}
+
+btn.onclick = function(e) {
+  const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+  // document.body.lastElementChild.style.backgroundColor = rndCol;
+  e.target.style.backgroundColor = rndCol;
+}
+</script> -->
+
+
+<div id="carousel" class="carousel">
+  <button class="arrow prev"><</button>
+  <div class="gallery">
+    <ul>
+      <li><img src="./img/1 (1).jpg"></li>
+      <li><img src="./img/1 (2).jpg"></li>
+      <li><img src="./img/1 (3).jpg"></li>
+      <li><img src="./img/1 (4).jpg"></li>
+      <li><img src="./img/1 (5).jpg"></li>
+      <li><img src="./img/1 (6).jpg"></li>
+      <li><img src="./img/1 (7).jpg"></li>
+      <li><img src="./img/1 (1).jpg"></li>
+      <li><img src="./img/1 (2).jpg"></li>
+      <li><img src="./img/1 (3).jpg"></li>
+      <li><img src="./img/1 (4).jpg"></li>
+      <li><img src="./img/1 (5).jpg"></li>
+      <li><img src="./img/1 (6).jpg"></li>
+      <li><img src="./img/1 (7).jpg"></li>
+    </ul>
+  </div>
+  <button class="arrow next">></button>
+</div>
+<style>
+  .body {
+  padding: 150px;
+}
+
+.carousel {
+  position: relative;
+  width: 890px;
+  /* padding: 10px 50px; */
+  /* border: 1px solid #7a08a0;
+  border-radius: 15px;
+  background: #e29bf4; */
+}
+
+.carousel img {
+  width: 250px;
+  height: 330px;
+  /* делаем этот элемент блочным, чтобы убрать лишнее пространство вокруг картинок */
+  display: block;
+}
+
+.arrow {
+  opacity: 0.5;
+  position: absolute;
+  top: 45%;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  padding: 0;
+  background-color: #13145e;
+  border: none;
+  font-size: 24px;
+  line-height: 24px;
+  color: #e1edf4;
+  display: block;
+  z-index: 10;
+}
+
+.arrow:focus {
+  outline: none;
+}
+
+.arrow:hover {
+  background: #c31515;
+  cursor: pointer;
+}
+
+.prev {
+  left: 7px;
+}
+
+.next {
+  right: 7px;
+}
+
+.gallery {
+  width: 890px;
+  overflow: hidden;
+}
+
+.gallery ul {
+  height: 330px;
+  width: 9999px;
+  margin: 10;
+  padding: 0;
+  list-style: none;
+  transition: margin-left 250ms;
+  /* удаляем пустое пространство между элементами li, у которых установлен inline-block */
+  /* http://davidwalsh.name/remove-whitespace-inline-block */
+  font-size: 0;
+}
+
+.gallery li {
+  display: inline-block;
+}
+</style>
+
+<script>
+  /* цей код позначає картинки, для зручності розробки */
+  let i = 1;
+  for(let li of carousel.querySelectorAll('li')) {
+    li.style.position = 'relative';
+    li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
+    i++;
+  }
+
+  /* Конфігурація */
+  let width = 250; // ширина зображення
+  let count = 3; // видима кількість зображень
+
+  let list = carousel.querySelector('ul');
+  let listElems = carousel.querySelectorAll('li');
+
+  let position = 0; // початкова позиція каруселі
+
+  carousel.querySelector('.prev').onclick = function() {
+    // зсув ліворуч
+    position += width * count;
+    // останній зсув вліво може бути не на 3, а на 2 або 1 елемент
+    position = Math.min(position, 0)
+    list.style.marginLeft = position + 'px';
+  };
+
+  carousel.querySelector('.next').onclick = function() {
+    // зсув праворуч
+    position -= width * count;
+    // останнє пересування вправо може бути не на 3, а на 2 або 1 елемент
+    position = Math.max(position, -width * (listElems.length - count));
+    list.style.marginLeft = position + 'px';
+  };
+</script>
+
+
+<body>
+    <script src="./script/script.js"></script>    
+</body>
+</html>
