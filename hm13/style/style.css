@@ -39,5 +39,10 @@
   .hidden{
     display: none;
   }
+  .slider{
+    margin: 0 auto;
+    align-items: center;
+  
+  }
   
   
