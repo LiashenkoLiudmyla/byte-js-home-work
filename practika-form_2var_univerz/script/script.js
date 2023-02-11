@@ -44,7 +44,7 @@ const takenLogins = ["alexx", "Joxn-cena", "sam", "jon", "bob"];
 
 
 const form = document.getElementById("form");
-const formInputs = document.querySelectorAll("input[type=text]")
+const formInputs = document.querySelectorAll("input[type=text]");
 const agreeCheckbox = document.getElementById("agree");
 const submitBtn = document.getElementById("submit");
 
@@ -53,39 +53,46 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
 const validationRules = {
-    email: [
-        {
-            validator: (value) => Boolean(value),
-            errorMessage: "Ви не ввели email",
-        },
-    ],
-    // name: [
-    //     {
-    //         validator: (value) => Boolean(value),
-    //         errorMessage: "Ви не ввели name",
-    //     },
-    // ],
     login: [
         {
             validator: (value) => !takenLogins.includes(value),
             errorMessage: "Цей логін вже зайнятий",
         },
         {
-            validator: (value) => Boolean(length),
+            validator: (value) => Boolean(value),
             errorMessage: "Ви не ввели логін",
         },
     ],
+    email: [
+        {
+            validator: (value) => Boolean(value),
+            errorMessage: "Ви не ввели email",
+        },
+    ],
+         ///////////////////+++++++++++++++////////////////////////
+         realName: [
+            {
+              validator: (value) => Boolean(value),
+              errorMessage: "Ви не ввели ім'я",
+            },
+            {
+              validator: (value) => value[0].toUpperCase() === value[0],
+              errorMessage: "Ім'я повинно починатися з великої літери"
+            }
+          ],
+        ///////////////////+++++++++++++++////////////////////////
+    
     password: [
         {
             validator: (value) => Boolean(value),
             errorMessage: "Ви не ввели пароль",
         },
         {
-            validator: (value) => value !== '' && value.length >= 6,
+            validator: (value) => (value === "" ? true : value.length >= 6),
             errorMessage: "Пароль повинен мати мінімально 6 символів",
         },
     ],
-    
+
 };
 
 const validateForm = (values, rules) => {
@@ -111,55 +118,7 @@ const validateForm = (values, rules) => {
         errors,
     };
 
-}
-
-// /////////////////////////
-
-
-// const simpleValidateForm = ( login, email, password) =>{ // І варіант ф-ція для валідації форми
-//     // цей варіант підходить для одного виду форми, яка потім не зміниться. самий простий варіант
-// //  console.log('login', login);
-// //  console.log('email', email);
-// //  console.log('password', password);
-
-//  const errors = {}; // створюємо пустий обєкт ерорс
-//  let isFormValid = true; // по дефолту в нас форма валідна
-//  // тобто на початку в нас немає ніяких помилок
-
-//  if (!login) { //якщо не логін, тобто його немає
-//     isFormValid = false; //то форма не валідна
-//     errors.login = "Ви не ввели логін" // і в обєкт ерорс по ключу login  виводимо 'Ви не ввели логін'
-//  }
-//  if (!email) { //якщо не email, тобто його немає
-//     isFormValid = false; //то форма не валідна
-//     errors.email = 'Ви не ввели email' // і в обєкт ерорс по ключу email  виводимо 'Ви не ввели email'
-//  } 
-//  if (!password) { //якщо не password, тобто його немає
-//     isFormValid = false; //то форма не валідна
-//     errors.password = 'Ви не ввели password' // і в обєкт ерорс по ключу password  виводимо 'Ви не ввели password'
-//  }// всі ключи берем з HTML name="password" --> --> <input type="text" class="input" id="password" name="password" />
-
-//  if (password !== '' && password.length < 6 ) {// перевірка на к-ть символів 
-//     isFormValid = false; //то форма не валідна
-//     errors.password = 'Пароль має складатися не менше 6 символів'
-//  }
-
-//  if (takenLogins.includes(login)){ //в масиві takenLogins(або датабаза) перевіряємо через метод масивів includes наявність логіна
-//     isFormValid = false; //то форма не валідна
-//     errors.login = 'Такий логін уже існує придумайте інший'
-//  }
-
-//  return { // і повертаємо обєкт де по ключу isFormValid в нас буде лежати isFormValid  
-//         // і по ключу errors лежить значення errors
-//     isFormValid,
-//     errors,
-//  }
-
-// }
-
-
-// /////////////////////////
-
+};
 const handleCheckboxChange = (event) => {
     const checked = event.target.checked;// отримали чекед
 
@@ -176,8 +135,8 @@ const hightLightErroredInputs = (errors) => { //створюємо метод щ
         const text = errors[name];  //щоб отримати до кожної помилки окремий доступ
     // нам буде доступний name і відповідне повідомлення згенерованої помилки
    // знаходимо на кожній ітерації інпут яикий нам підходе щоб показати в ньому цю помилку
-    const erroredInput = form.querySelector(`input[name=${name}]`) // звертаємося до інпуту через кверіселектор
-    // console.log('erroredInput', erroredInput);
+    const erroredInput = form.querySelector(`input[name=${name}]`); // звертаємося до інпуту через кверіселектор
+    console.log('erroredInput', erroredInput);
     // ~ CSS селектор (тільда ~) //
     const errorTextElement = form.querySelector( //беремо селектор
         `input[name=${name}] ~ .errorMessage` //беремо input по атрибуту name що рівинй ${name}
@@ -230,15 +189,9 @@ const handleFormSubmit = (event) => { // обробник форми, тобто
         if(!validationResult.isFormValid){ //якщо в нас не валідна форма 
             hightLightErroredInputs(validationResult.errors) // тоді виконується метод для підсвічування форми
         }else{
-            // console.log({
-            //     login: loginValue,
-            //     email: emailValue,
-            //     password: passwordValue
-            // })
+            console.log(values);
         }
-
-    console.log('validationResult', validationResult);
-}
+    };
 
 agreeCheckbox.addEventListener("change", handleCheckboxChange);
 form.addEventListener('submit', handleFormSubmit); // обробник повязуємо з нашою формою
