@@ -2,8 +2,6 @@
   img {
     width: 250px;
     height: 330px;
-   
-    
   }
   
   .arrow {
@@ -31,18 +29,20 @@
     cursor: pointer;
   }
   .prev {
-    left: 7px;
+    left: 600px;
   }
   .next {
-    left: 222px;
+    left: 900px;
   }
   .hidden{
     display: none;
   }
   .slider{
+   
     margin: 0 auto;
-    align-items: center;
+    text-align: center; /* відцентрувала сам слайд */
   
   }
+  
   
   
