@@ -7,7 +7,7 @@
 
 const VISITS_CONNY_KEY = "visits"
 
-const renenderGreeting = (isInitial, visitsCount = 0) => {
+const renenderGreeting = (isInitial, visitsCount = 0) => { // параматр за змовчуванням 0 
   const greetingElement = document.createElement("p")
   const visitCountElement = document.createElement("p")
   greetingElement.innerText = "Ласкаво просимо!"
@@ -20,13 +20,13 @@ const renenderGreeting = (isInitial, visitsCount = 0) => {
   }
 }
 
-if(localStorage.getItem(VISITS_CONNY_KEY)){
+if(localStorage.getItem(VISITS_CONNY_KEY)){ //інформація що зберігається на стороні клієнта отримуємо з visits, якщо нема то вставл-
   const visits = JSON.parse(localStorage.getItem("visits"))
   const updatedVisits = visits + 1;
-  localStorage.setItem("visits", updatedVisits)
+  localStorage.setItem("visits", updatedVisits) 
 
   renenderGreeting(true, updatedVisits)
   }else{
-    localStorage.setItem("visits", 1)
-    renenderGreeting(false)
+    localStorage.setItem("visits", 1)// яємо автоматично - 1 і  не видаляється при перезавантаженні {visits: 1}
+    renenderGreeting(false) //як що ще не були то в нас включається параметр за змовчуванням 0
   }
