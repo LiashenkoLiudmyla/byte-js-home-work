@@ -99,8 +99,8 @@ const advancedMax = (...numbers) => {
 //   return `From ${author} to ${reciever}: ${text} (${time.toLocaleDateString()})`;
 // };
 
-// const message = createMessage("Peter", "Hello", "Sam", new Date());
-// console.log('message', message)
+// const message1 = createMessage("Peter", "Hello", "Sam", new Date());
+// console.log('message1', message1)
 
 
 const AdvancedCreateMessage = (author = "guest", text, reciever, time = new Date()) => {
@@ -108,12 +108,12 @@ const AdvancedCreateMessage = (author = "guest", text, reciever, time = new Date
   };
 
 // // после выполнения этого задания, функция должна коректно работать с таким аргументом
-// const message = createMessage({
-//   reciever: "John",
-//   text: "Hi!",
-// });
+const message2 = AdvancedCreateMessage({
+  reciever: "John",
+  text: "Hi!",
+});
 
-// console.log('message', message);
+console.log('message2', message2);
 
 
 
