@@ -103,7 +103,7 @@ const advancedMax = (...numbers) => {
 // console.log('message1', message1)
 
 
-const AdvancedCreateMessage = (author = "guest", text, reciever, time = new Date()) => {
+const AdvancedCreateMessage = ({author = "guest", text, reciever, time = new Date()}) => {
   return `From ${author} to ${reciever}: ${text} (${time.toLocaleDateString()})`;
   };
 
