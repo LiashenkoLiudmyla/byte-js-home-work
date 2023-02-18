@@ -10,7 +10,97 @@
 // Документация к API: https://jsonplaceholder.typicode.com/
 
 
+const BASE_URL = "https://jsonplaceholder.typicode.com/"
+// отримуємо контейнер куди будемо апендити
 
-// getData('https://jsonplaceholder.typicode.com/todos')
+const cont = document.createElement("div")
+const postsRequest = new XMLHttpRequest();
+postsRequest.open("GET", BASE_URL)
+postsRequest.responseType = "json"
 
-// const cont = document.createElement('div'),
+postsRequest.send()
+
+const hideComments = (div) => { // ми створювали дів у кінець тепер нам треба видалити коментар 
+
+    // для цього отримуємо останню дитину оп ДОМ дереву
+    let comments = div.lastElementChild
+    comments.remove()
+}
+
+const showComments = (comments, div) => {
+
+    const divComment = document.createElement("div")
+
+    comments.forEach((obj) => {
+        let { body: comment } = obj
+
+        const p = document.createElement("p")
+        p.innerText = comment
+
+        divComment.append(p)
+    })
+
+    div.append(divComment) // дів з коментарями додається в кінець
+}
+
+const getPostComments = (id, event) => {
+
+    const xhrComments = new XMLHttpRequest()
+
+    xhrComments.open("GET", `${BASE_URL}${id}/comments`)
+
+    xhrComments.responseType = "json"
+
+    xhrComments.send()
+
+    const button = event.target
+    const parent = event.target.parentNode; // батько (parent) куди будемо додавати коментарі
+
+    xhrComments.onload = () => {
+
+        let result = xhrComments.response
+
+        if(button.innerText === "Show comments") {
+            button.innerText = "Hide comments"
+            showComments(result, parent) // у функцію шоукоментс передаємо резалт тобто відповідь з сервера та батька куди будемо додавати коментарі
+
+        } else if (button.innerText === "Hide comments" ) {
+            button.innerText = "Show comments"
+            hideComments(parent)
+        }
+    }
+}
+
+const renderPost = (postsList, container) => {
+ console.log(postsList)
+
+    const posts = postsList.map((post) => {
+        const postContainer = document.createElement("div");
+        const postTitle = document.createElement("h2");
+        const postText = document.createElement("p");
+        const button = document.createElement("button")
+
+        postTitle.innerText = post.title
+        postText.innerText = post.body
+        button.innerText = "Show comments"
+        postContainer.classList.add("post-container")
+        button.classList.add("button")
+
+        postContainer.append(postTitle, postText, button)
+
+        let postsId = post.id //щоб дістати кожен пост по айді призначаємо змінну
+
+        button.addEventListener("click", (event) => {
+            getPostComments(postsId, event) // і передаємо кожен пост айді по якому будемо робити запит
+        })
+       
+    })
+
+    container.append(...posts)
+
+}
+
+postsRequest.onload = () => {
+    const { response } = postsRequest
+    renderPost(response, cont)
+}
