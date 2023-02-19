@@ -10,13 +10,15 @@
 // Документация к API: https://jsonplaceholder.typicode.com/
 
 
-const BASE_URL = "https://jsonplaceholder.typicode.com/"
+const BASE_URL = "https://jsonplaceholder.typicode.com/posts"
 // отримуємо контейнер куди будемо апендити
 
 const cont = document.createElement("div")
 const postsRequest = new XMLHttpRequest();
 postsRequest.open("GET", BASE_URL)
 postsRequest.responseType = "json"
+
+// console.log("cont",cont)
 
 postsRequest.send()
 
@@ -25,7 +27,10 @@ const hideComments = (div) => { // ми створювали дів у кіне�
     // для цього отримуємо останню дитину оп ДОМ дереву
     let comments = div.lastElementChild
     comments.remove()
+
+
 }
+
 
 const showComments = (comments, div) => {
 
@@ -38,10 +43,16 @@ const showComments = (comments, div) => {
         p.innerText = comment
 
         divComment.append(p)
+        
+       
     })
+       
+   
 
     div.append(divComment) // дів з коментарями додається в кінець
 }
+
+
 
 const getPostComments = (id, event) => {
 
@@ -68,11 +79,18 @@ const getPostComments = (id, event) => {
             button.innerText = "Show comments"
             hideComments(parent)
         }
+       
     }
+    
+   
 }
 
+
+// console.dir(document.body)
+
 const renderPost = (postsList, container) => {
- console.log(postsList)
+
+//  console.log(postsList)
 
     const posts = postsList.map((post) => {
         const postContainer = document.createElement("div");
@@ -93,14 +111,21 @@ const renderPost = (postsList, container) => {
         button.addEventListener("click", (event) => {
             getPostComments(postsId, event) // і передаємо кожен пост айді по якому будемо робити запит
         })
-       
+        
+        
     })
 
     container.append(...posts)
 
+    
+    
 }
 
 postsRequest.onload = () => {
     const { response } = postsRequest
     renderPost(response, cont)
+   
+    
+   
 }
+
