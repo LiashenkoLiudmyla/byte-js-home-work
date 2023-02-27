@@ -1,0 +1,79 @@
+.container {
+  margin: 0 auto;
+  max-width: 1170px;
+  font-family: sans-serif;
+}
+
+.pagination {
+  margin: 40px auto;
+  text-align: center;
+}
+
+.button {
+  background-color: #fff;
+  border: 2px solid black;
+  outline: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.button__form {
+  padding: 8px 12px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.button__paging {
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  padding: 0;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.button__paging:not(:last-child) {
+  margin-right: 4px;
+}
+
+.button__active {
+  background-color: black;
+  color: #fff;
+}
+
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.form {
+  display: none;
+  padding: 32px;
+  margin: 40px auto;
+  max-width: 500px;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.form-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.input {
+  border: 1px solid black;
+  padding: 8px 12px;
+  border-radius: 6px;
+  /* width: 100%; */
+}
+
+.input:not(:last-child) {
+  margin-bottom: 16px;
+}
