@@ -17,13 +17,13 @@
   font-weight: 500;
 }
 
-.button__form {
+.button_form {
   padding: 8px 12px;
   border-radius: 6px;
   width: 100%;
 }
 
-.button__paging {
+.button_paging {
   height: 30px;
   width: 30px;
   text-align: center;
@@ -32,11 +32,11 @@
   border-radius: 5px;
 }
 
-.button__paging:not(:last-child) {
+.button_paging:not(:last-child) {
   margin-right: 4px;
 }
 
-.button__active {
+.button_active {
   background-color: black;
   color: #fff;
 }
