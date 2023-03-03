@@ -103,3 +103,36 @@ body {
       opacity: 0;
     }
   }
+
+  .input{
+    display: block;
+   
+    text-align: center;
+   
+  }
+
+.card{
+    text-align: center;
+
+}
+ 
+  #form{
+    margin: 0 auto;
+  }
+  #input{
+    padding-left: 10px;
+    margin-top: 30px;
+    border: 1px solid rgb(108, 5, 146);
+    height: 18px;
+  }
+  .button{
+    width: 200px;
+    height: 20px;
+    background: rgb(108, 5, 146);
+    border: none;
+    color: white;
+  }
+  .film-text{
+    margin: 10px 0;
+    text-decoration: underline;
+  }
