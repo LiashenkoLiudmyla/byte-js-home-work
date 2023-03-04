@@ -150,7 +150,7 @@ try {
 const BASE_URL = "https://swapi.dev/api/people"
 const idForm = document.getElementById("form") // -> форма з id = "form"
 const input = document.getElementById("input") // -> input з id = "input"
-const contChar = document.getElementById("charakter-container") // -> div з id = "charakter-container"
+const contChar = document.getElementById("character-container") // -> div з id = "charakter-container"
 
 //обробка помилки 
 const handleErrors = async (response) => {
@@ -190,7 +190,7 @@ const handleButtonFilms = async ({ films }) => {
 // console.log("fetchFilms", fetchFilms) не консолиться жодна консоль
 
     try {
-        const response = await Promise.all(fetchFilms)
+        const responses = await Promise.all(fetchFilms)
         const jsonResponses = responses.map((response) => response.json());
         const result = await Promise.all(jsonResponses)
 
@@ -205,6 +205,7 @@ const handleButtonFilms = async ({ films }) => {
 
 
 // рендеримо картку персонажа
+
 const renderCharacterCard = (char) => {
     const { name } = char
     const divChar = document.createElement("div")
@@ -223,6 +224,8 @@ const renderCharacterCard = (char) => {
     
     btnChar.addEventListener("click", (event) => {
 
+        console.log("event.target.1",event.target)// кнопка FILMS
+
         if(!event.target.hasAttribute("isActive")){
             event.target.setAttribute("isActive", "")
             handleButtonFilms(char)
@@ -230,15 +233,14 @@ const renderCharacterCard = (char) => {
             
             event.target.removeAttribute("isActive")
             event.target.nextElementSibling.remove() // не змогла подивитися по дом дереву  
-        }
 
-       
-     
+        }
+        
     })
 
     
 };
-
+console.log('contChar', contChar)
 
 // отримуємо персонажа
 const getCharacter = async (id) => {
@@ -248,9 +250,9 @@ const getCharacter = async (id) => {
         await fetch(`${BASE_URL}/${id}`)
        ) 
 
-       const charakter = await response.json();
+       const character = await response.json();
 
-       await renderCharacterCard(charakter)
+       await renderCharacterCard(character)
        
     } catch (error) {
 
@@ -264,6 +266,8 @@ const getCharacter = async (id) => {
     
 
 };
+
+
 // for (var i = 0; i < document.body.childNodes.length; i++) {
 //       alert( document.body.childNodes[i] ); // последовательно выведет дочерние элементы document.body:
 //     }
@@ -277,19 +281,23 @@ const handleIdForm = (event) => {
 
     if (value === ""){
         alert ("Введіть число")
-        return
+        return 
     }else{
         getCharacter(value)
     }
      
 contChar.firstElementChild.remove()
+
+
 };
 
 
 // запит форми
  idForm.addEventListener( "submit", handleIdForm)
 
- const test = handleIdForm
-console.log('test', test)
+//  const test = handleIdForm
+//  console.log('test', test)
+
+// HTMLFormElement.handleIdForm
 
 
