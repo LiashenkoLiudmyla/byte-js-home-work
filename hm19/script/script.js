@@ -285,9 +285,9 @@ const handleIdForm = (event) => {
     }else{
         getCharacter(value)
     }
-     
-contChar.firstElementChild.remove()
-
+    if(contChar.firstElementChild){
+        contChar.firstElementChild.remove()
+  }
 
 };
 
