@@ -40,6 +40,7 @@
 const input = document.getElementById('input')
 const select = document.getElementById('select')
 const form = document.getElementById('form')
+
 //отримуємо форму
 //отримуємо інпут
 // отримуємо селект
